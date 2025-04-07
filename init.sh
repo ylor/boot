@@ -2,8 +2,8 @@
 
 case $(uname) in
 'Darwin')
-	sh init.macos.sh
-	sh init.macos.defaults.sh
+	sh macos/init.sh
+	sh macos/defaults.sh
 	;;
 *)
 	echo "Unknown operating system. Aborting..."
