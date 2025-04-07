@@ -10,6 +10,8 @@ RED='\033[31m'
 GREEN='\033[32m'
 RESET='\033[0m'
 
+[ -d $DEST ] && rm -rf "$DEST"
+
 if ! [ -x "$(command -v git)" ]; then
 	git clone --quiet --recursive "$REPO.git" "$DEST"
 else
@@ -19,7 +21,7 @@ else
 	fi
 fi
 
-if [ -d "$DEST" ]; thnen
+if [ -d "$DEST" ]; then
 	echo "${GREEN}✓ SUCCESS:${RESET} dotfiles available in $DEST"
 	cd "$DEST" && source init.sh
 else
