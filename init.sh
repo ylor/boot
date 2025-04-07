@@ -10,5 +10,7 @@ case $(uname) in
 	;;
 esac
 
-git clone "https://github.com/ylor/dotfiles" "$HOME/.dotfiles"
-source "$HOME/.dotfiles/link.sh"
+if [ -x git]; then
+	git clone "https://github.com/ylor/dotfiles" "$HOME/.dotfiles"
+	source "$HOME/.dotfiles/link.sh"
+fi
