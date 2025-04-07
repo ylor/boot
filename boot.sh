@@ -22,10 +22,10 @@ else
 fi
 
 if [ -d "$DEST" ]; then
-	echo "${GREEN}✓ SUCCESS:${RESET} dotfiles available in $DEST"
-	cd "$DEST" && source init.sh
+	echo "${GREEN}✓ SUCCESS:${RESET} initializing..."
+	cd "$DEST" && sh init.sh
 else
-	echo "${RED}✗ ERROR:${RESET} dotfiles download or extraction failed."
+	echo "${RED}✗ ERROR:${RESET} payload download or extraction failed."
 	exit 1
 fi
 
