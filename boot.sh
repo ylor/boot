@@ -1,35 +1,30 @@
 #!/bin/sh -e
 # Usage: sh -c "$(curl -fsSL boot.roly.sh)"
 
-REPO="https://github.com/ylor/boot"
-DEST="/var/tmp/boot"
+repo="https://github.com/ylor/boot"
+dest="$HOME/.local/share/boot"
 
-BOLD='\033[1m'
-UNDERLINE='\033[4m'
-RED='\033[31m'
-GREEN='\033[32m'
-RESET='\033[0m'
+bold='\033[1m'
+underline='\033[4m'
+red='\033[31m'
+green='\033[32m'
+reset='\033[0m'
 
-[ -d $DEST ] && rm -rf "$DEST"
+[ -d $dest ] && rm -rf "$dest" && mkdir -p "$dest"
 
-# if ! [ -x "$(command -v git)" ]; then
-# 	git clone --quiet --recursive "$REPO.git" "$DEST"
-# else
-# 	if [ -x "$(command -v curl)" ]; then # oooookay let's curl the tar
-# 	    mkdir -p "$DEST"
-# 		curl --fail --show-error --location "$REPO/archive/master.tar.gz" | tar --extract --strip-components=1 --directory "$DEST"
-# 	fi
-# fi
+echo "cloning..."
 
-mkdir -p "$DEST" && cp -r * $DEST
-
-if [ -d "$DEST" ]; then
-	echo "initializing..."
-	cd "$DEST" && sh init.sh
-	echo "${GREEN}✓"
+if [ -x $(command -v git) ]; then
+	git clone --quiet --recursive "$repo.git" "$dest" >/dev/null
 else
-	echo "${RED}✗ ERROR:${RESET} payload download or extraction failed."
-	exit 1
+	curl --fail --show-error --location "$repo/archive/master.tar.gz" | tar --extract --strip-components=1 --directory "$dest"
 fi
 
-rm -rf "$DEST"
+echo "initializing..."
+if [ -d "$dest" ]; then
+	cd "$dest" && sh init.sh
+	echo "${green}✓"
+else
+	echo "${red}✗ ERROR"
+	exit 1
+fi

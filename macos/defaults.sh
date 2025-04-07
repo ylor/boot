@@ -89,29 +89,8 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write com.apple.TextEdit "SmartQuotes" -bool "false"
 
 # Hot Corners
-## com.apple.dock wvous-[bl|br|tl|tr]-corner
-
-## Possible values wvous-*-corner:
-###  0: no-op
-###  2: Mission Control
-###  3: Show application windows
-###  4: Desktop
-###  5: Start screen saver
-###  6: Disable screen saver
-###  7: Dashboard
-### 10: Put display to sleep
-### 11: Launchpad
-### 12: Notification Center
-### 13: Lock Screen
-
-## Possible values wvous-*-modifier
-### 0: no modifier
-### 524288: option
-### 1048576: command
-### 1573864: option + command
-
-## top left screen corner → mission control
+## top left → mission control
 defaults write com.apple.dock wvous-br-corner -int 2
 defaults write com.apple.dock wvous-br-modifier -int 0
 
-# killall "Activity Monitor" "Dock" "Finder" "TextEdit"
+killall "Activity Monitor" "Dock" "Finder" "TextEdit"
