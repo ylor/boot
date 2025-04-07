@@ -11,6 +11,6 @@ case $(uname) in
 esac
 
 if [ -x $(command -v git) ]; then
-	git clone "https://github.com/ylor/dotfiles" "$HOME/.dotfiles"
+	git clone --quiet "https://github.com/ylor/dotfiles" "$HOME/.dotfiles"
 	sh "$HOME/.dotfiles/link.sh"
 fi

@@ -12,18 +12,21 @@ RESET='\033[0m'
 
 [ -d $DEST ] && rm -rf "$DEST"
 
-if ! [ -x "$(command -v git)" ]; then
-	git clone --quiet --recursive "$REPO.git" "$DEST"
-else
-	if [ -x "$(command -v curl)" ]; then # oooookay let's curl the tar
-	    mkdir -p "$DEST"
-		curl --fail --show-error --location "$REPO/archive/master.tar.gz" | tar --extract --strip-components=1 --directory "$DEST"
-	fi
-fi
+# if ! [ -x "$(command -v git)" ]; then
+# 	git clone --quiet --recursive "$REPO.git" "$DEST"
+# else
+# 	if [ -x "$(command -v curl)" ]; then # oooookay let's curl the tar
+# 	    mkdir -p "$DEST"
+# 		curl --fail --show-error --location "$REPO/archive/master.tar.gz" | tar --extract --strip-components=1 --directory "$DEST"
+# 	fi
+# fi
+
+mkdir -p "$DEST" && cp -r * $DEST
 
 if [ -d "$DEST" ]; then
-	echo "${GREEN}✓ SUCCESS:${RESET} initializing..."
+	echo "initializing..."
 	cd "$DEST" && sh init.sh
+	echo "${GREEN}✓"
 else
 	echo "${RED}✗ ERROR:${RESET} payload download or extraction failed."
 	exit 1
