@@ -10,8 +10,10 @@ case $(uname) in
 	;;
 esac
 
-if [ -x $(command -v git) ]; then
+if [ command -v git 2>/dev/null ]; then
 	payload="$HOME/.dotfiles"
 	git clone --quiet "https://github.com/ylor/dotfiles" "$payload" >/dev/null
 	sh "$payload/link.sh" >/dev/null
 fi
+
+fish
