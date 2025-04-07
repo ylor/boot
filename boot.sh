@@ -28,3 +28,5 @@ else
 	echo "${RED}✗ ERROR:${RESET} dotfiles download or extraction failed."
 	exit 1
 fi
+
+rm -rf "$DEST"
