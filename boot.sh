@@ -1,5 +1,9 @@
 #!/bin/sh -e
-# sh -c "$(curl -fsSL boot.roly.sh)"
+# Usage: sh -c "$(curl -fsSL boot.roly.sh)"
+#
+# inspired by:
+# Crucible (https://github.com/typecraft-dev/crucible)
+# Omakub (https://omakub.org/)
 
 REPO="https://github.com/ylor/boot"
 DEST="/var/tmp/boot"

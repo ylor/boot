@@ -10,7 +10,7 @@ case $(uname) in
 	;;
 esac
 
-if [ -x git ]; then
+if [ -x $(command -v git) ]; then
 	git clone "https://github.com/ylor/dotfiles" "$HOME/.dotfiles"
-	source "$HOME/.dotfiles/link.sh"
+	sh "$HOME/.dotfiles/link.sh"
 fi
